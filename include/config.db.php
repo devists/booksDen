@@ -19,7 +19,7 @@ define('DB_DATABASE','bookDen');//Define Global Variable for Database Name
  * creates database connectio
  * return [mysqli object] returns connection
  */
-function getSQLConnection(){
+function getDBConnection(){
     $conn = new mysqli(DB_SERVER,DB_USER,DB_PASSWORD,"");
 
     if ($conn->connect_error) {
