@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2016 at 05:50 AM
+-- Generation Time: Feb 07, 2016 at 02:16 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -27,8 +27,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `booksden_book` (
-  `isbn` int(13) NOT NULL,
-  `id` int(11) NOT NULL,
+  `isbn` bigint(13) NOT NULL,
+  `id` bigint(11) NOT NULL,
   `up_date` timestamp NOT NULL,
   `title` varchar(30) NOT NULL,
   `author` varchar(20) NOT NULL,
@@ -45,6 +45,13 @@ CREATE TABLE IF NOT EXISTS `booksden_book` (
   PRIMARY KEY (`isbn`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `booksden_book`
+--
+
+INSERT INTO `booksden_book` (`isbn`, `id`, `up_date`, `title`, `author`, `publisher`, `p_year`, `edition`, `lang`, `category`, `tags`, `pages`, `rating`, `comment`, `count`) VALUES
+(9123654789647, 201452041, '2016-02-07 13:13:11', 'Dawar', 'mofuu', 'anil', '2016-02-07 13:13:11', 2, 'japnese', 'joke', '', 75, '5', '', 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
