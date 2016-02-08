@@ -73,6 +73,20 @@ class Books
             return 0;
         }
     }
+    function bookExist($isbn)
+    {   
+        $res='';
+        $query="SELECT * FROM booksden_book WHERE isbn=$isbn";
+        $res=$this->conn->query($query);
+        if (!$res->num_rows) {
+            echo "<h4>Book Doesn't Exist</h4>";
+            return 0;
+        }
+        else {
+            echo "<h4>Book Exist</h4>";
+            return 1;
+        }
+    }
 
 	/**
 	 * Other Functions Starts From Here
