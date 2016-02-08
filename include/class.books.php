@@ -73,6 +73,12 @@ class Books
             return 0;
         }
     }
+
+/**
+ * Checks if book Exist in database
+ * @param  {int} $isbn of books
+ * @return {bool}       returns true on success else false
+*/
     function bookExist($isbn)
     {   
         $res='';
@@ -88,6 +94,11 @@ class Books
         }
     }
 
+/**
+ * Returns author name of perticular book
+ * @param  {int} $isbn of book
+ * @return author name on success else 0
+ */
     function getAuthorName($isbn)
     {
         $res='';
@@ -100,8 +111,33 @@ class Books
         else {
             $author = $res->fetch_assoc()['author'];
             echo "Author Name: <b>$author</b>";
-            return 1;
+            return $author;
         }   
+    }
+
+/**
+ * Returns list of author in database
+ * @return {arr} returns array of author
+ */
+    function authorList()
+    {
+        $res='';
+        $authorArr=array();
+        $query="SELECT author FROM booksden_book WHERE 1";
+        $res=$this->conn->query($query);
+        if (!$res->num_rows) {
+            echo "<h4>No Author Exist</h4>";
+            return 0;
+        }
+        else {
+            echo "Author Name\n";
+
+            while ($author= $res->fetch_assoc()) {
+                array_push($authorArr, $author['author']);
+            }
+            print_r($authorArr);
+            return $authorArr;
+        }        
     }
 
 	/**

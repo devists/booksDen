@@ -15,4 +15,5 @@ $insert_data = array("isbn"=>"278914", "up_date"=>"2016-02-06 18:07:57", "title"
  // $books->update_edition($isbn);
  // $books->delete_record($isbn);
 // $books->bookExist(3);
-$books->getAuthorName(278);
+// $books->getAuthorName(278);
+$books->authorList();
