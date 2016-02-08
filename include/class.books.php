@@ -13,42 +13,64 @@ class Books
 	{
 		$this->conn = getDBConnection();
 	}
-    function add_insert()
+    /*
+    * Adds new record to the database
+    * @param {array} $info contains datails of record 
+    * @return isbn on success else 0
+    */
+    function add_records($info)
     {
-        $data="INSERT INTO booksden_book(isbn,up_date,title,author,publisher,p_year,edition,lang,category,tags,pages,rating,comment,count) VALUES(278929, '2016-02-06 18:07:57', 'C How to Program', 'Paul Dietel & Harvey', '\0', '2016-02-06 18:07:57', 7, 'English', 'Programming', 'Basic C Programming', 0, '', '', 0)";
+        $data="INSERT INTO booksden_book (isbn,up_date,title,author,publisher,p_year,edition,lang,category,tags,pages,rating,comment,count) VALUES ('$info[isbn]','$info[up_date]','$info[title]', '$info[author]', '$info[publisher]', '$info[p_year]', '$info[edition]', '$info[lang]', '$info[category]', '$info[tags]', '$info[pages]', '$info[rating]', '$info[comment]', '$info[count]')";
+        
         if($this->conn->query($data) == true)
         {
-            echo "new record create successfuly";
+            echo "<h3>New record create successfuly</h3>";
+            return $info['isbn'];
         }
         else
         {
             echo "error in insertion" . $this->conn->error;
+            return 0;
         }
     }
-    function update_record()
+    /*
+    * updates new record to the database
+    * @param {int} $isbn of record 
+    * @return isbn on success else 0
+    */
+    function update_edition($isbn)
     {
-        $update_data = "UPDATE booksden SET edition='8' WHERE id=2";
+        $update_data = "UPDATE booksden_book SET edition='8' WHERE isbn=$isbn";
 
         if ($this->conn->query($update_data) === TRUE)   
         {
-            echo "Record updated successfully";
+            echo "<h3>Record updated successfully</h3>";
+            return $isbn;
         } 
         else 
         {
-        echo "Error updating record: " . $this->conn->error;
+            echo "Error updating record: " . $this->conn->error;
+            return 0;
         }
     }
-    function delete_record()
+    /*
+    * delete record to the database
+    * @param {int} $isbn of record 
+    * @return isbn on success else 0
+    */
+    function delete_record($isbn)
     {
-        $delete = "DELETE FROM booksden WHERE id=2";
+        $delete = "DELETE FROM booksden_book WHERE isbn=$isbn";
 
         if ($this->conn->query($delete) === TRUE)
         {
-        echo "Record deleted successfully";
+            echo "<h3>Record deleted successfully</h3>";
+            return $isbn;
         }       
         else 
         {
-        echo "Error deleting record: " . $this->conn->error;
+            echo "Error deleting record: " . $this->conn->error;
+            return 0;
         }
     }
 
