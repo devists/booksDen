@@ -119,10 +119,10 @@ class Books
  * Returns list of author in database
  * @return {arr} returns array of author
  */
-    function authorList()
+    function authorsList()
     {
         $res='';
-        $authorArr=array();
+        $authorsArr=array();
         $query="SELECT author FROM booksden_book WHERE 1";
         $res=$this->conn->query($query);
         if (!$res->num_rows) {
@@ -130,15 +130,42 @@ class Books
             return 0;
         }
         else {
-            echo "Author Name\n";
+            echo "<h3>Authors Name</h3>";
 
             while ($author= $res->fetch_assoc()) {
-                array_push($authorArr, $author['author']);
+                array_push($authorsArr, $author['author']);
             }
-            print_r($authorArr);
-            return $authorArr;
+            print_r($authorsArr);
+            return $authorsArr;
         }        
     }
+
+    /**
+     * Returns list of Books in database
+     * @return {arr} returns array of Books Name
+     */
+        function booksList()
+        {
+            $res='';
+            $booksArr=array();
+            $book='';
+            $query="SELECT title FROM booksden_book WHERE 1";
+            $res=$this->conn->query($query);
+            if (!$res->num_rows) {
+                echo "<h4>No Records Exist</h4>";
+                return 0;
+            }
+            else {
+                echo "<h3>Books Name</h3>";
+
+                while ($book= $res->fetch_assoc()) {
+                    array_push($booksArr, $book['title']);
+                }
+                print_r($booksArr);
+                return $booksArr;
+            }
+        }
+
 
     /**
      * Returns no. of books in Database
