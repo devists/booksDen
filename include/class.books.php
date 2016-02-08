@@ -88,6 +88,22 @@ class Books
         }
     }
 
+    function getAuthorName($isbn)
+    {
+        $res='';
+        $query="SELECT author FROM booksden_book WHERE isbn=$isbn";
+        $res=$this->conn->query($query);
+        if (!$res->num_rows) {
+            echo "<h4>Author Doesn't Exist</h4>";
+            return 0;
+        }
+        else {
+            $author = $res->fetch_assoc()['author'];
+            echo "Author Name: <b>$author</b>";
+            return 1;
+        }   
+    }
+
 	/**
 	 * Other Functions Starts From Here
 	 */
