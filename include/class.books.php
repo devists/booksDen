@@ -126,7 +126,7 @@ class Books
         $query="SELECT author FROM booksden_book WHERE 1";
         $res=$this->conn->query($query);
         if (!$res->num_rows) {
-            echo "<h4>No Author Exist</h4>";
+            echo "<h4>No Records Exist</h4>";
             return 0;
         }
         else {
@@ -139,6 +139,29 @@ class Books
             return $authorArr;
         }        
     }
+
+    /**
+     * Returns no. of books in Database
+     * @return {integer} returns no. of books in databse on success else 0
+     */
+    function getBooksCount()
+    {   
+        $res='';
+        $count='';
+        $query="SELECT COUNT(*) FROM booksden_book";
+        $res=$this->conn->query($query);
+        $count = $res->fetch_assoc()['COUNT(*)'];
+        if (!$count) {
+            echo "<h4>No Records Exist</h4>";
+            return 0;
+        }
+        else {
+            print_r("<h4>Total no Books In Database: $count</h4>");
+            return $count;
+        }        
+    }
+
+
 
 	/**
 	 * Other Functions Starts From Here
