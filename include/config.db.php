@@ -14,7 +14,7 @@
 define('DB_SERVER','localhost');//Define Global variable for serverName
 define('DB_USER','devists');//Define Global Variable for Database User
 define('DB_PASSWORD','devistsProject');//Define Global Variable for Database Password
-define('DB_DATABASE','bookDen');//Define Global Variable for Database Name
+define('DB_DATABASE','booksden');//Define Global Variable for Database Name
 /**
  * creates database connectio
  * return [mysqli object] returns connection
