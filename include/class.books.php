@@ -187,7 +187,28 @@ class Books
             return $count;
         }        
     }
-
+    /*
+    * sort database table according to update year
+    */
+    function books_sortby_up_date()
+    {
+        #$books_update=array();
+        #$up_date="SELECT up_date FROM booksden_book WHERE 1";
+    }
+    /*
+    * sort database table according to publication year
+    */
+    function books_sortby_p_year()
+    {
+        
+    }
+    /*
+    * sort database table according to title
+    */
+    function books_sortby_title()
+    {
+        
+    }
 
 
 	/**
