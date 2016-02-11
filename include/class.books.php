@@ -395,7 +395,25 @@ class Books
     */
     function books_by_publisher()
     {
-        
+      $bookArr = array();
+          $book ='';
+          $query = "SELECT title FROM booksden_book WHERE publisher ='$publisher'";
+          $res = $this->conn->query($query);
+          if($res == FALSE)
+          {
+              echo"<h4> No Records Exists </h4>";
+              echo $res;
+              return 0;
+          }
+          else{
+              echo "<h3>Books Name</h3>";
+
+              while($book = $res->fetch_assoc()){
+                  array_push($bookArr,$book['title']);
+              }
+              print_r($bookArr);
+              return $bookArr;
+          }
     }
 	/**
 	 * Other Functions Starts From Here

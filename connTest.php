@@ -27,4 +27,6 @@ $insert_data = array("isbn"=>"278914", "up_date"=>"2016-02-06 18:07:57", "title"
  // $books->books_by_p_year($p_year);
 //$books->books_sortby_up_date();
 //$books->books_sortby_p_year();
-$books->books_sortby_title();
+//$books->books_sortby_title();
+    $publisher = "MISSING MANUAL";
+    $books->books_by_publisher($publisher);
