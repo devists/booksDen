@@ -265,6 +265,34 @@ class Books
     	}
 
     }
+    /**
+     * returns the title of the books published in a particular year
+     * @param  string $p_year timestamp of p_year
+     * @return array         returns the books published in a particular year on success, else 0 
+     */
+    function books_by_p_year($p_year)
+    {
+    	#$res = '';
+    	$bookArr = array();
+    	$book = '';
+    	$query = "SELECT title FROM booksden_book WHERE p_year = '$p_year'";
+    	$res = $this->conn->query($query);
+    	if($res == FALSE){
+    		echo"<h4> No Records Exist </h4>";
+    		echo $res;
+    		return 0;
+    	}
+    	else{
+    		echo "<h3>Books Name</h3>";
+
+    		while($book = $res->fetch_assoc()){
+    			array_push($bookArr,$book['title']);
+    		}
+    		print_r($bookArr);
+    		return $bookArr;
+    	}
+
+    }
 
 	/**
 	 * Other Functions Starts From Here
