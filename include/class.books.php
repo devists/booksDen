@@ -209,6 +209,34 @@ class Books
     {
         
     }
+    /**
+     * returns books by particular author 
+     * @param  string $authorName [Name of the author]
+     * @return [array]             [on success,returns titles of the book by that author, else 0]
+     */
+    function books_by_author($authorName)
+    {
+    	#$res = '';
+    	$bookArr = array();
+    	$book = '';
+    	$query = "SELECT title FROM booksden_book WHERE author = '$authorName'";
+    	$res = $this->conn->query($query);
+    	if($res == FALSE){
+    		echo"<h4> No Records Exist </h4>";
+    		echo $res;
+    		return 0;
+    	}
+    	else{
+    		echo "<h3>Books Name</h3>";
+
+    		while($book = $res->fetch_assoc()){
+    			array_push($bookArr,$book['title']);
+    		}
+    		print_r($bookArr);
+    		return $bookArr;
+    	}
+
+    }
 
 
 	/**
