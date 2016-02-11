@@ -237,7 +237,34 @@ class Books
     	}
 
     }
+/**
+ * returns the books of a particular category
+ * @param  [string] $categoryName [Name of the category]
+ * @return [Array]               [returns title of the books of a particular category on success, else 0]
+ */
+    function books_by_category($categoryName)
+    {
+    	#$res = '';
+    	$bookArr = array();
+    	$book = '';
+    	$query = "SELECT title FROM booksden_book WHERE category = '$categoryName'";
+    	$res = $this->conn->query($query);
+    	if($res == FALSE){
+    		echo"<h4> No Records Exist </h4>";
+    		echo $res;
+    		return 0;
+    	}
+    	else{
+    		echo "<h3>Books Name</h3>";
 
+    		while($book = $res->fetch_assoc()){
+    			array_push($bookArr,$book['title']);
+    		}
+    		print_r($bookArr);
+    		return $bookArr;
+    	}
+
+    }
 
 	/**
 	 * Other Functions Starts From Here
