@@ -23,5 +23,8 @@ $insert_data = array("isbn"=>"278914", "up_date"=>"2016-02-06 18:07:57", "title"
 // $books->books_by_author($authorName);
 // 	$categoryName = "programming";
 // 	$books->books_by_category($categoryName);
-  $p_year = "2016-02-07 00:02:19";
-  $books->books_by_p_year($p_year);
+ // $p_year = "2016-02-07 00:02:19";
+ // $books->books_by_p_year($p_year);
+//$books->books_sortby_up_date();
+//$books->books_sortby_p_year();
+$books->books_sortby_title();
