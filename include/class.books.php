@@ -293,7 +293,46 @@ class Books
     	}
 
     }
-
+    /*
+    * sort books by language 
+    */
+      function books_by_lang($lang)
+    {    
+        $bookArr = array();
+          $book ='';
+          $query = "SELECT title FROM booksden_book WHERE lang ='$lang'";
+          $res = $this->conn->query($query);
+          if($res == FALSE)
+          {
+              echo"<h4> No Records Exists </h4>";
+              echo $res;
+              return 0;
+          }
+          else{
+              echo "<h3>Books Name</h3>";
+              
+              while($book = $res->fetch_assoc()){
+                  array_push($bookArr,$book['title']);
+              }
+              printf_r($bookArr);
+              return $bookArr;
+          }
+      }
+                  
+    /*
+    * sort database table according to books rating
+    */
+    function books_by_rating($rating)
+    {
+        
+    }
+    /*
+    * sort database table according to book publisher
+    */
+    function books_by_publisher()
+    {
+        
+    }
 	/**
 	 * Other Functions Starts From Here
 	 */
