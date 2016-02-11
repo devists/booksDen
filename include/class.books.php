@@ -210,11 +210,26 @@ class Books
         return $booksSorted;
     }
     /*
-    * sort database table according to publication year
+    * sort database tabl e according to publication year
+    * @return array of sorted books else 0
     */
     function books_sortby_p_year()
     {
-        
+        $booksSorted=array();
+        $query="SELECT * FROM booksden_book ORDER BY p_year";
+        $res=$this->conn->query($query);
+        if (!$res->num_rows) {
+            echo "<h4>No Records Exist</h4>";
+            return 0;
+        }
+        else
+        {
+            echo "<h3>Sorted all books detailed according to publication year</h3>";
+            while ($book= $res->fetch_assoc()) {
+                   array_push($booksSorted,$book);
+                }
+        print_r($booksSorted);}
+        return $booksSorted;
     }
     /*
     * sort database table according to title
