@@ -233,9 +233,25 @@ class Books
     }
     /*
     * sort database table according to title
+    * @return array sorted books else 0
     */
     function books_sortby_title()
     {
+        $booksSorted=array();
+        $query="SELECT * FROM booksden_book ORDER BY title";
+        $res=$this->conn->query($query);
+        if (!$res->num_rows) {
+            echo "<h4>No Records Exist</h4>";
+            return 0;
+        }
+        else
+        {
+            echo "<h3>Sorted all books detailed according to bookname(title)</h3>";
+            while ($book= $res->fetch_assoc()) {
+                   array_push($booksSorted,$book);
+                }
+        print_r($booksSorted);}
+        return $booksSorted;
         
     }
     /**
