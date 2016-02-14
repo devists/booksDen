@@ -74,11 +74,11 @@ class Books
         }
     }
 
-/**
- * Checks if book Exist in database
- * @param  {int} $isbn of books
- * @return {bool}       returns true on success else false
-*/
+    /**
+     * Checks if book Exist in database
+     * @param  {int} $isbn of books
+     * @return {bool}       returns true on success else false
+    */
     function bookExist($isbn)
     {   
         $res='';
@@ -94,11 +94,11 @@ class Books
         }
     }
 
-/**
- * Returns author name of perticular book
- * @param  {int} $isbn of book
- * @return author name on success else 0
- */
+    /**
+     * Returns author name of perticular book
+     * @param  {int} $isbn of book
+     * @return author name on success else 0
+     */
     function getAuthorName($isbn)
     {
         $res='';
@@ -115,10 +115,10 @@ class Books
         }   
     }
 
-/**
- * Returns list of author in database
- * @return {arr} returns array of author
- */
+    /**
+     * Returns list of author in database
+     * @return {arr} returns array of author
+     */
     function authorsList()
     {
         $res='';
@@ -189,76 +189,92 @@ class Books
     }
     /*
     * sort database table according to update year
+    * @return array of sorted books else 0
     */
     function books_sortby_up_date()
     {
-        #$books_update=array();
-        #$up_date="SELECT up_date FROM booksden_book WHERE 1";
+        $booksSorted=array();
+        $query="SELECT * FROM booksden_book ORDER BY up_date";
+        $res=$this->conn->query($query);
+        if (!$res->num_rows) {
+            echo "<h4>No Records Exist</h4>";
+            return 0;
+        }
+        else
+        {
+            echo "<h3>Sorted all books detailed according to up_date</h3>";
+            while ($book= $res->fetch_assoc()) {
+                   array_push($booksSorted,$book);
+                }
+        print_r($booksSorted);}
+        return $booksSorted;
     }
     /*
-    * sort database table according to publication year
+    * sort database tabl e according to publication year
+    * @return array of sorted books else 0
     */
     function books_sortby_p_year()
     {
-        
+        $booksSorted=array();
+        $query="SELECT * FROM booksden_book ORDER BY p_year";
+        $res=$this->conn->query($query);
+        if (!$res->num_rows) {
+            echo "<h4>No Records Exist</h4>";
+            return 0;
+        }
+        else
+        {
+            echo "<h3>Sorted all books detailed according to publication year</h3>";
+            while ($book= $res->fetch_assoc()) {
+                   array_push($booksSorted,$book);
+                }
+        print_r($booksSorted);}
+        return $booksSorted;
     }
     /*
     * sort database table according to title
+    * @return array sorted books else 0
     */
     function books_sortby_title()
     {
+        $booksSorted=array();
+        $query="SELECT * FROM booksden_book ORDER BY title";
+        $res=$this->conn->query($query);
+        if (!$res->num_rows) {
+            echo "<h4>No Records Exist</h4>";
+            return 0;
+        }
+        else
+        {
+            echo "<h3>Sorted all books detailed according to bookname(title)</h3>";
+            while ($book= $res->fetch_assoc()) {
+                   array_push($booksSorted,$book);
+                }
+        print_r($booksSorted);}
+        return $booksSorted;
         
     }
     /**
      * returns books by particular author 
      * @param  string $authorName [Name of the author]
-     * @return [array]             [on success,returns titles of the book by that author, else 0]
+     * @return [array]             [on success,returns details of the book by that author, else 0]
      */
     function books_by_author($authorName)
     {
-    	#$res = '';
+    	$res = '';
     	$bookArr = array();
     	$book = '';
-    	$query = "SELECT title FROM booksden_book WHERE author = '$authorName'";
+    	$query = "SELECT * FROM booksden_book WHERE author = '$authorName'";
     	$res = $this->conn->query($query);
-    	if($res == FALSE){
+    	if(!$res->num_rows){
     		echo"<h4> No Records Exist </h4>";
-    		echo $res;
     		return 0;
     	}
     	else{
-    		echo "<h3>Books Name</h3>";
+    		echo "<h3>Books Detail (author)</h3>";
 
     		while($book = $res->fetch_assoc()){
-    			array_push($bookArr,$book['title']);
-    		}
-    		print_r($bookArr);
-    		return $bookArr;
-    	}
-
-    }
-/**
- * returns the books of a particular category
- * @param  [string] $categoryName [Name of the category]
- * @return [Array]               [returns title of the books of a particular category on success, else 0]
- */
-    function books_by_category($categoryName)
-    {
-    	#$res = '';
-    	$bookArr = array();
-    	$book = '';
-    	$query = "SELECT title FROM booksden_book WHERE category = '$categoryName'";
-    	$res = $this->conn->query($query);
-    	if($res == FALSE){
-    		echo"<h4> No Records Exist </h4>";
-    		echo $res;
-    		return 0;
-    	}
-    	else{
-    		echo "<h3>Books Name</h3>";
-
-    		while($book = $res->fetch_assoc()){
-    			array_push($bookArr,$book['title']);
+    			array_push($bookArr,$book);
     		}
     		print_r($bookArr);
     		return $bookArr;
@@ -266,34 +282,148 @@ class Books
 
     }
     /**
-     * returns the title of the books published in a particular year
-     * @param  string $p_year timestamp of p_year
-     * @return array         returns the books published in a particular year on success, else 0 
+     * returns the books of a particular category
+     * @param  [string] $categoryName [Name of the category]
+     * @return [Array]               [returns detail of the books of a particular category on success, else 0]
      */
-    function books_by_p_year($p_year)
+    function books_by_category($categoryName)
     {
-    	#$res = '';
+    	$res = '';
     	$bookArr = array();
     	$book = '';
-    	$query = "SELECT title FROM booksden_book WHERE p_year = '$p_year'";
+    	$query = "SELECT * FROM booksden_book WHERE category = '$categoryName'";
     	$res = $this->conn->query($query);
-    	if($res == FALSE){
+    	if(!$res->num_rows){
     		echo"<h4> No Records Exist </h4>";
-    		echo $res;
     		return 0;
     	}
     	else{
-    		echo "<h3>Books Name</h3>";
+    		echo "<h3>Books Detail (by category)</h3>";
 
     		while($book = $res->fetch_assoc()){
-    			array_push($bookArr,$book['title']);
+    			array_push($bookArr,$book);
     		}
     		print_r($bookArr);
     		return $bookArr;
     	}
 
     }
+    /**
+     * returns  the books published in a particular year
+     * @param  string $p_year [timestamp of p_year]
+     * @return array         returns the detail of books published in a particular year on success, else 0 
+     */
+    function books_by_p_year($p_year)
+    {
+    	$res = '';
+    	$bookArr = array();
+    	$book = '';
+    	$query = "SELECT * FROM booksden_book WHERE p_year = '$p_year'";
+    	$res = $this->conn->query($query);
+    	if(!$res->num_rows){
+    		echo"<h4> No Records Exist </h4>";
+    		return 0;
+    	}
+    	else{
+    		echo "<h3>Books Detail (by p_year)</h3>";
 
+    		while($book = $res->fetch_assoc()){
+    			array_push($bookArr,$book);
+    		}
+    		print_r($bookArr);
+    		return $bookArr;
+    	}
+
+    }
+    /**
+     * returns  the books published in a particular language
+     * @param  string $lang [language of book]
+     * @return array         returns the detail of books published in a particular year on success, else 0 
+     */
+    function books_by_lang($lang)
+    {    
+        $bookArr = array();
+        $book ='';
+        $query = "SELECT * FROM booksden_book WHERE lang ='$lang'";
+        $res = $this->conn->query($query);
+        if(!$res->num_rows)
+        {
+            echo"<h4> No Records Exists </h4>";
+            return 0;
+        }
+        else
+        {
+            echo "<h3>Books Detail (by lang)</h3>";
+
+            while($book = $res->fetch_assoc()){
+            array_push($bookArr,$book);
+            }
+            print_r($bookArr);
+            return $bookArr;
+        }
+    }
+                  
+    /**
+     * returns  the books published having perticular rating
+     * @param  string $rating [rating of book]
+     * @return array         returns the detail of books having perticular rating on success, else 0 
+     */
+    function books_by_rating($rating)
+    {
+        if($rating>=0 && $rating <= 5)
+        {
+            $bookArr = array();
+            $book ='';
+            $query = "SELECT * FROM booksden_book WHERE rating ='$rating'";
+            $res = $this->conn->query($query);
+            if(!$res->num_rows)
+            {
+                echo"<h4> No Records Exists </h4>";
+                return 0;
+            }
+            else {
+                echo "<h3>Books Detail(by rating)</h3>";
+
+                while($book = $res->fetch_assoc()){
+                    array_push($bookArr,$book);
+                }
+                print_r($bookArr);
+                return $bookArr;
+            }
+        }
+        else
+        {
+            echo "<h3>Invalid Rating</h3>";
+            return 0;
+        }
+    }
+
+    /**
+     * returns  the books published by particular publisher
+     * @param  string $publisher [publisher of book]
+     * @return array         returns the detail of books published by perticular publisher on success, else 0 
+     */
+    function books_by_publisher($publisher)
+    {
+      $bookArr = array();
+        $book ='';
+        $query = "SELECT * FROM booksden_book WHERE publisher ='$publisher'";
+        $res = $this->conn->query($query);
+        if(!$res->num_rows)
+        {
+            echo"<h4> No Records Exists </h4>";
+            return 0;
+        }
+        else
+        {
+            echo "<h3>Books Detail(by Publisher)</h3>";
+            while($book = $res->fetch_assoc()) {
+                array_push($bookArr,$book);
+            }
+            print_r($bookArr);
+            return $bookArr;
+        }
+    }
 	/**
 	 * Other Functions Starts From Here
 	 */
