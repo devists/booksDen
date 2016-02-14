@@ -424,6 +424,28 @@ class Books
             return $bookArr;
         }
     }
+
+    /**
+     * returns the number of authors in the database
+     * @return [integer] [no.of books in database]
+     */
+    function author_count()
+    {   
+        $res='';
+        $count='';
+        $query="SELECT COUNT(DISTINCT author) FROM booksden_book";
+        $res=$this->conn->query($query);
+        $count = $res->fetch_assoc()['COUNT(DISTINCT author)'];
+        if (!$count) {
+            echo "<h4>No Records Exist</h4>";
+            return 0;
+        }
+        else {
+            print_r("<h4>Total no Authors In Database: $count</h4>");
+            return $count;
+        }        
+    }
+
 	/**
 	 * Other Functions Starts From Here
 	 */
