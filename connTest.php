@@ -32,4 +32,5 @@ $books->books_by_rating(4);
 $publisher = "MISSING MANUAL";
 $books->books_by_publisher($publisher);
 $books->books_by_lang("english");
-   $books->parse_tags("english;hindi;janju;kamina");
+$books->parse_tags("english;hindi;janju;kamina");
+$books->update_tags($isbn,"test1;test2;test3");

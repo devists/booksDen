@@ -460,6 +460,27 @@ class Books
         return $tags_array;
     }
 
+    /*
+    * updates tags to the database
+    * @param {int} $isbn of record 
+    * @return isbn on success else 0
+    */
+    function update_tags($isbn,$tags)
+    {
+        $update_data = "UPDATE booksden_book SET tags= '$tags' WHERE isbn=$isbn";
+
+        if ($this->conn->query($update_data) === TRUE)   
+        {
+            echo "<h3>Tags updated successfully for book $isbn</h3>";
+            return $isbn;
+        } 
+        else 
+        {
+            echo "Error updating tags: " . $this->conn->error;
+            return 0;
+        }
+    }
+
 	/**
 	 * Other Functions Starts From Here
 	 */
