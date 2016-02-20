@@ -11,8 +11,8 @@ $insert_data = array("isbn"=>"278914", "up_date"=>"2016-02-06 18:07:57", "title"
 $books = new Books();
 echo "<h1>Successfully Created Connection</h1>";
 $books->add_records($insert_data);
-$isbn="278914";
-$books->update_edition($isbn);
+$isbn="	9780132990448";
+$books->update_edition($isbn,7);
 $books->delete_record($isbn);
 $books->bookExist(3);
 $books->getAuthorName(278);

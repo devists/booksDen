@@ -38,18 +38,18 @@ class Books
     * @param {int} $isbn of record 
     * @return isbn on success else 0
     */
-    function update_edition($isbn)
+    function update_edition($isbn,$edition)
     {
-        $update_data = "UPDATE booksden_book SET edition='8' WHERE isbn=$isbn";
+        $update_data = "UPDATE booksden_book SET edition=$edition WHERE isbn=$isbn";
 
         if ($this->conn->query($update_data) === TRUE)   
         {
-            echo "<h3>Record updated successfully</h3>";
+            echo "<h3>Edition of book $isbn updated successfully</h3>";
             return $isbn;
         } 
         else 
         {
-            echo "Error updating record: " . $this->conn->error;
+            echo "Error updating edition: " . $this->conn->error;
             return 0;
         }
     }
