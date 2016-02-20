@@ -446,6 +446,20 @@ class Books
         }        
     }
 
+    /**
+     * Returns the array from string which contains multiple tags seperated by ';'
+     * @param  {string} $tags string from tags column
+     * @return {array}       array of tags
+     */
+    function parse_tags($tags)
+    {
+        $tags_array = explode(';', $tags);
+        $tags_array = array_filter($tags_array);
+        echo "<h3>Tags Array Are</h3>";
+        print_r($tags_array);
+        return $tags_array;
+    }
+
 	/**
 	 * Other Functions Starts From Here
 	 */
