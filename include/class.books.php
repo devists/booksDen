@@ -481,6 +481,34 @@ class Books
         }
     }
 
+    /**
+     * returns  the books associated with perticular tag
+     * @param  string $tag [tag of book]
+     * @return array         returns the detail of books associated with perticular tag, else 0 
+     */
+    
+    function books_by_tag($tag)
+    {
+      $bookArr = array();
+        $book ='';
+        $query = "SELECT * FROM booksden_book WHERE tags LIKE '%$tag%'";
+        $res = $this->conn->query($query);
+        if(!$res->num_rows)
+        {
+            echo"<h4> No Records Exists </h4>";
+            return 0;
+        }
+        else
+        {
+            echo "<h3>Books Detail(by tag)($tag)</h3>";
+            while($book = $res->fetch_assoc()) {
+                array_push($bookArr,$book);
+            }
+            print_r($bookArr);
+            return $bookArr;
+        }
+    }
+
 	/**
 	 * Other Functions Starts From Here
 	 */

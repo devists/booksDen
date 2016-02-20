@@ -34,3 +34,4 @@ $books->books_by_publisher($publisher);
 $books->books_by_lang("english");
 $books->parse_tags("english;hindi;janju;kamina");
 $books->update_tags($isbn,"test1;test2;test3");
+$books->books_by_tag("WEB");
