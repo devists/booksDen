@@ -1,5 +1,5 @@
 # booksDen
-BooksDen is Web-based app which showcases list of total books available in th library and other functionalities. 
+BooksDen is Web-based app which showcases list of total books available in the library and other functionalities. 
 
 ##Plan
 Features can Be divided as per User __Sudent__ And __Admin__
